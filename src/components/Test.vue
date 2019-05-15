@@ -1,51 +1,45 @@
 <template>
   <div class="test">
-    <div class="scroll-tets" id="scroll-tets" @click="testClick" ref="mytestClick">
-        <div class="scroll-tets-li"></div>
-        <div class="scroll-tets-li"></div>
-        <div class="scroll-tets-li"></div>
-        <div class="scroll-tets-li"></div>
-        <div class="scroll-tets-li"></div>
-        <div class="scroll-tets-li"></div>
-        <div class="scroll-tets-li"></div>
-        <div class="scroll-tets-li"></div>
-        <div class="scroll-tets-li"></div>
-        <div class="scroll-tets-li"></div>
-        <div class="scroll-tets-li"></div>
-        <div class="scroll-tets-li"></div>
-        <div class="scroll-tets-li"></div>
-        <div class="scroll-tets-li"></div>
-        <div class="scroll-tets-li"></div>
-        <div class="scroll-tets-li"></div>
-    </div>
+    <navigation-bar title="测试页"></navigation-bar>
+    <ul>
+      <li><a @click="toPage('./tests/pushDownRefresh')">下拉刷新测试 </a></li>
+      <li><a @click="toPage('./tests/Other')">其他测试 </a></li>
+      <li><a @click="toPage('./tests/MarkDown')">MarkDown 测试 </a></li>
+    </ul>
   </div>
 </template>
 
 <script>
+import NavigationBar from '../utils/components/NavigationBar'
+
 export default {
   name: 'Test',
+  components:{
+    NavigationBar
+  },
   data () {
     return {
-      msg: 'Welcome to Your RouterTest'
+      
     }
   },
   methods: {
-    testClick(){
-      this.$refs.mytestClick.scrollTop = this.$refs.mytestClick.scrollHeight;
-    },
+    toPage(url){
+      this.$router.history.push(url)
+    }
   },
 }
 </script>
 
 <style lang='stylus' scoped>
-  .test
-    .scroll-tets
-      height: 200px
-      width: 200px
-      overflow: auto
-      outline: 1px solid red
-      .scroll-tets-li
-        height: 50px
-        outline: 1px solid #ccc
-        margin: 5px
+.test
+  height 100%
+  ul
+    padding-top 44px
+    box-sizing border-box
+    height 100%
+    li:nth-child(2n+1)
+      background-color #ccc
+      margin 10px 0
+      cursor pointer
+      line-height 30px
 </style>

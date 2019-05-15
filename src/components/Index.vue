@@ -196,13 +196,13 @@ export default {
         return;
       }
       this.$vux.loading.show()
-      axiosPost('UserController/register', {
+      axiosPost('users/register', {
             name: name,
             password: password,
             email: email
         }).then(res => {
             this.$vux.loading.hide()
-            if (res.status !== 0) {
+            if (res.code !== 0) {
               this.$vux.toast.text(res.message);
             }else{
               this.$vux.toast.text('注册成功');

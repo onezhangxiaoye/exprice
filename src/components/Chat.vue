@@ -3,8 +3,8 @@
     <navigation-bar :title="friend.name"></navigation-bar>
     <ul class="message-lists" ref="messageLists">
       <template v-if="userInfo">
-        <li v-for="messageList in  $root.$data.store.getMessagesById(friend.id)">
-          <div :class="messageList.pushUserId === userInfo.id ? 'left-li' : 'right-li'">{{messageList.message}}</div>
+        <li v-for="messageList in $root.$data.store.getMessagesById(friend.id)">
+          <div :class="messageList.pushUserId == userInfo.id ? 'left-li' : 'right-li'">{{messageList.message}}</div>
         </li>
       </template>
     </ul>
@@ -66,19 +66,27 @@ export default {
             }
             if (this.Socket) {
               const sendMessage = {
+                type:0,
+                data:{
                   pushUserId:userInfo.id,
                   pullUserId:id,
                   message:message,
                   timestamp:new Date().getTime()
+                }
               }
               //Socket 发送消息
               this.Socket.send(JSON.stringify(sendMessage));
               //保存消息内容
-              this.$root.$data.store.setMessage(sendMessage,id);
+              this.$root.$data.store.setMessage({
+                type:0,
+                ...sendMessage.data
+              },id);
+              console.log(this.$root.$data.store.getMessagesById(id));
               //清楚输入框消息内容
               this.message = '';
               const refmessageLists = this.$refs.messageLists;
-              refmessageLists.scrollTo(refmessageLists.scrollHeight);
+              // refmessageLists.scrollTo(refmessageLists.scrollHeight);
+              refmessageLists.scrollTop = refmessageLists.scrollHeight;
             }else{
               this.$vux.toast.text('当前处于离线状态，无法发送消息');
             }
@@ -88,15 +96,6 @@ export default {
         }
     },
 
-  },
-  computed:{
-    messageLists () {
-      if (this.$root.$data.store.messages && this.friend) {
-        return this.$root.$data.store.getMessagesById(this.friend.id);
-      }else{
-        return [];
-      }
-    },
   }
 }
 </script>
@@ -122,7 +121,7 @@ export default {
         position relative
         height 45px
         .left-li
-            background-color: #fff
+            background-color: #ccc
             position absolute
             left 20px
             color #888

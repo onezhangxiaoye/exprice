@@ -1,21 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import { XHeader, ToastPlugin, LoadingPlugin } from 'vux'
-import HelloWorld from '@/components/HelloWorld'
 import RouterTest from '@/components/RouterTest'
 import Index from '@/components/Index'
 import Chat from '@/components/Chat'
 import Home from '@/components/Home'
 import Test from '@/components/Test'
+import FriendMessage from '@/components/FriendMessage'
+import PushDownRefresh from '@/components/tests/PushDownRefresh'
+import Other from '@/components/tests/Other'
+import MarkDown from '@/components/tests/MarkDown'
 
 Vue.use(Router)
-Vue.use(ToastPlugin)
-Vue.use(LoadingPlugin)
-// 默认参数
-Vue.use(ToastPlugin, { position: 'top' })
-
-Vue.component('x-header', XHeader)
-
 
 const routers = new Router({
   routes: [
@@ -51,11 +46,47 @@ const routers = new Router({
       }
     },
     {
+      path: '/FriendMessage',
+      name: 'FriendMessage',
+      component: FriendMessage,
+      meta: {
+        index: 2,
+        login:true //表示需要登陆权限
+      }
+    },
+    {
       path: '/Test',
       name: 'Test',
       component: Test,
       meta: {
         index: 2,
+        login:false //表示需要登陆权限
+      }
+    },
+    {
+      path: '/tests/PushDownRefresh',
+      name: 'PushDownRefresh',
+      component: PushDownRefresh,
+      meta: {
+        index: 3,
+        login:false //表示需要登陆权限
+      }
+    },
+    {
+      path: '/tests/Other',
+      name: 'Other',
+      component: Other,
+      meta: {
+        index: 3,
+        login:false //表示需要登陆权限
+      }
+    },
+    {
+      path: '/tests/MarkDown',
+      name: 'MarkDown',
+      component: MarkDown,
+      meta: {
+        index: 3,
         login:false //表示需要登陆权限
       }
     },
