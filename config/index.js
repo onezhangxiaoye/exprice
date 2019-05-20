@@ -13,9 +13,9 @@ module.exports = {
     proxyTable: {},
 
     // Various Dev Server settings
-    host: '0.0.0.0', // 设置为0.0.0.0可以让局域网访问
-    port: 1122, // 端口号 如果端口正在使用，将确定一个空闲端口
-    autoOpenBrowser: false, //启动时自动打开浏览器
+    host: 'localhost', // can be overwritten by process.env.HOST
+    port: 1133, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-

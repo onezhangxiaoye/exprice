@@ -10,7 +10,7 @@ function resolve (dir) {
 
 
 
-const originalConfig = {
+module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
     app: './src/main.js'
@@ -80,14 +80,3 @@ const originalConfig = {
     child_process: 'empty'
   }
 }
-
-const vuxLoader = require('vux-loader')
-const webpackConfig = originalConfig // 原来的 module.exports 代码赋值给变量 webpackConfig
-
-module.exports = vuxLoader.merge(webpackConfig, {
-  plugins: ['vux-ui', 'duplicate-style',
-  {
-    name: 'less-theme',
-    path: 'src/styles/theme.less' // 相对项目根目录路径
-  }]
-})
