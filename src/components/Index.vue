@@ -1,7 +1,7 @@
 <template>
   <div class="index">
     <div class="index-content">
-      <img class="my-header" src="../assets/cy.png" alt="">
+      <img class="my-header" src="../assets/cy.jpg" alt="">
       <div class="index-group">
         <transition-group 
           name="staggered-fade"
@@ -43,6 +43,7 @@ import Velocity from 'velocity-animate';
 import socket from '../utils/socket/socket.js'
 
 import XbcInput from '../utils/components/XbcInput'
+import { debug, log } from 'util';
 
 export default {
   name: 'Index',
@@ -82,6 +83,7 @@ export default {
   },
   activated(){
     localStorage.removeItem('userInfo');
+    console.log(this);
   },
   methods: {
     confirm(){
@@ -266,7 +268,9 @@ export default {
 <style scoped>
 .my-header{
   width: 64px;
-  margin: 20px 0;
+  margin: 20px auto;
+  display: block;
+  border-radius: 32px;
 }
 .index{
   height: 100%;
@@ -279,10 +283,16 @@ export default {
   width: 90%;
   margin: 0 auto;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
   align-items: center;
+  /* padding-bottom: 70%; */
+}
+.index-content:before{
+  content: ' ';
+  display: block;
+  height: 1px;
 }
 .index-content,.index-content input{
   line-height: 40px;

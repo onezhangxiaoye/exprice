@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import {creatbgCanvas} from './bgcanvas/index.js'
 import {createCanvas} from './bgcanvas/circleLine.js'
 export default {
   name: 'App',
@@ -99,4 +98,5 @@ canvas{
   left: 0;
   top: 0;
 }
+div :hover
 </style>

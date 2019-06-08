@@ -95,6 +95,7 @@ exports.createNotifierCallback = () => {
       title: packageConfig.name,
       message: severity + ': ' + error.name,
       subtitle: filename || '',
+      //这里为文件的为标题图标
       icon: path.join(__dirname, 'logo.png')
     })
   }
